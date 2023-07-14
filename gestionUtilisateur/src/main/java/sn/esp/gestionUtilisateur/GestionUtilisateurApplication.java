@@ -21,7 +21,6 @@ import static sn.esp.gestionUtilisateur.constant.FileConstant.USER_FOLDER;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestionUtilisateurApplication.class, args);
-
 		new File(USER_FOLDER).mkdirs(); // creer un dossier à chaque demarrage qvykvdlgfcppngdy
 	}
 
