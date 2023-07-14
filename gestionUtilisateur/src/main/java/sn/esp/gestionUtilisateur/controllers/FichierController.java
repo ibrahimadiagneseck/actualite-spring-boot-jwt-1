@@ -2,7 +2,10 @@ package sn.esp.gestionUtilisateur.controllers;
 
 import com.google.common.net.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -87,15 +90,26 @@ public class FichierController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-
     @GetMapping("/Fichier/{id}")
-    public ResponseEntity<byte[]> getFileById(@PathVariable String id) {
+    public ResponseEntity<Resource> getFileById(@PathVariable String id) {
         FichierDB fichierDB = fichierStockageService.getFile(id);
+        ByteArrayResource resource = new ByteArrayResource(fichierDB.getdonnee());
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fichierDB.getIdfichierdb() + "\"")
-                .body(fichierDB.getdonnee());
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
     }
+
+
+//    @GetMapping("/Fichier/{id}")
+//    public ResponseEntity<byte[]> getFileById(@PathVariable String id) {
+//        FichierDB fichierDB = fichierStockageService.getFile(id);
+//
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fichierDB.getIdfichierdb() + "\"")
+//                .body(fichierDB.getdonnee());
+//    }
 
 //	@GetMapping("/FichierById/{id}")
 //	@ResponseBody

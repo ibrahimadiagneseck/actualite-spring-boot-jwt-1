@@ -13,9 +13,12 @@ public class Categorie {
 
     private String libelle;
 
-    public Categorie(Long idcategorie, String libelle) {
+    private String description;
+
+    public Categorie(Long idcategorie, String libelle, String description) {
         this.idcategorie = idcategorie;
         this.libelle = libelle;
+        this.description = description;
     }
 
     public Categorie() {
@@ -33,7 +36,15 @@ public class Categorie {
         return libelle;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setLibelle(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

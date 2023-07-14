@@ -46,7 +46,6 @@ public class ArticlePhotoController {
         if(article != null && fichierDB != null) {
             ArticlePhoto chauffeurPhoto = new ArticlePhoto(article.getIdarticle(), article, fichierDB);
             articlePhotoService.saveArticlePhoto(chauffeurPhoto);
-
         }
     }
 }
